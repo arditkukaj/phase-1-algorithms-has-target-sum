@@ -5,19 +5,22 @@
   Else, return false.
  */
 
-function hasTargetSum(array, target) {
-  for (let i=0; i<array.length; i++) {
-    const complement = target - array[i];
-    for (let j = i+1; j<array.length; j++){
-      if (array[j] === complement) 
-      return true; 
+  function hasTargetSum(array, target) {
+    const seenNumbers = new Set(); // initialize an empty Set
+    for (const number of array) {
+      const complement = target - number;
+  
+      // .has returns true if the Set includes the complement
+      if (seenNumbers.has(complement)) return true;
+  
+      // .add adds the number to the Set
+      seenNumbers.add(number);
     }
+    return false;
   }
-  return false;
-}
 
 /* Write the Big O time complexity of your function here
-  Runtime: 0(n^2)
+  Runtime: 0(n)
   Space: 0(n)
 */
 
